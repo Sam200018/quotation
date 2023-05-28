@@ -1,5 +1,7 @@
+import 'package:CotizApp/ui/routes.dart';
 import 'package:CotizApp/ui/values/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
 class HomePage extends StatelessWidget {
@@ -48,7 +50,7 @@ class LogoMessage extends StatelessWidget {
     return Column(
       children: [
         Image.asset("assets/logo.png"),
-         SizedBox(
+        SizedBox(
             width: 30.w,
             child: Text(protectMessage, style: TextStyle(fontSize: 12.sp),)),
       ],
@@ -61,16 +63,20 @@ class BeginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GoRouter router = GoRouter.of(context);
+
     return OutlinedButton(
-      onPressed: () {},
+      onPressed: () {
+        router.go(AppRouter.carData);
+      },
       style: OutlinedButton.styleFrom(
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.white,
-        elevation: 2.0,
-        minimumSize: Size(80.w, 10.h),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0)
-        )
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.white,
+          elevation: 2.0,
+          minimumSize: Size(80.w, 10.h),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0)
+          )
       ),
       child: Text(
         beginButtonLabel,
