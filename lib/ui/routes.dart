@@ -11,6 +11,7 @@ class AppRouter {
   static String carData = "/carData";
 
   GoRouter router = GoRouter(
+    initialLocation: home,
     routes: [
       GoRoute(path: home, builder: (context, state) => const HomePage()),
       GoRoute(path: carData,builder: (context, state) => const CarDataPage())
