@@ -63,11 +63,11 @@ class BeginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GoRouter router = GoRouter.of(context);
+
 
     return OutlinedButton(
       onPressed: () {
-        router.go(AppRouter.carData);
+        context.go(AppRouter.carData);
       },
       style: OutlinedButton.styleFrom(
           foregroundColor: Colors.black,
