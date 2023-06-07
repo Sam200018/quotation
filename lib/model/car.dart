@@ -29,37 +29,52 @@ class CarModel {
     required this.year,
   });
 
-  factory CarModel.fromRawJson(String str) => CarModel.fromJson(json.decode(str));
+  static empty() => CarModel(
+      cityMpg: 0,
+      carModelClass: "",
+      combinationMpg: 0,
+      cylinders: 0,
+      displacement: 0.0,
+      drive: "",
+      fuelType: "",
+      highwayMpg: 0,
+      make: "",
+      model: "",
+      transmission: "",
+      year: 0);
+
+  factory CarModel.fromRawJson(String str) =>
+      CarModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory CarModel.fromJson(Map<String, dynamic> json) => CarModel(
-    cityMpg: json["city_mpg"],
-    carModelClass: json["class"],
-    combinationMpg: json["combination_mpg"],
-    cylinders: json["cylinders"],
-    displacement: json["displacement"]?.toDouble(),
-    drive: json["drive"],
-    fuelType: json["fuel_type"],
-    highwayMpg: json["highway_mpg"],
-    make: json["make"],
-    model: json["model"],
-    transmission: json["transmission"],
-    year: json["year"],
-  );
+        cityMpg: json["city_mpg"],
+        carModelClass: json["class"],
+        combinationMpg: json["combination_mpg"],
+        cylinders: json["cylinders"],
+        displacement: json["displacement"]?.toDouble(),
+        drive: json["drive"],
+        fuelType: json["fuel_type"],
+        highwayMpg: json["highway_mpg"],
+        make: json["make"],
+        model: json["model"],
+        transmission: json["transmission"],
+        year: json["year"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "city_mpg": cityMpg,
-    "class": carModelClass,
-    "combination_mpg": combinationMpg,
-    "cylinders": cylinders,
-    "displacement": displacement,
-    "drive": drive,
-    "fuel_type": fuelType,
-    "highway_mpg": highwayMpg,
-    "make": make,
-    "model": model,
-    "transmission": transmission,
-    "year": year,
-  };
+        "city_mpg": cityMpg,
+        "class": carModelClass,
+        "combination_mpg": combinationMpg,
+        "cylinders": cylinders,
+        "displacement": displacement,
+        "drive": drive,
+        "fuel_type": fuelType,
+        "highway_mpg": highwayMpg,
+        "make": make,
+        "model": model,
+        "transmission": transmission,
+        "year": year,
+      };
 }
