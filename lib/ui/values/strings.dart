@@ -18,6 +18,10 @@ const String persDataCivilField= "Selecciona tu estado civil";
 const String persDataDele= "Delegación";
 const String persDataDeleField= "Selecciona tu delegación";
 
+// Insurance data
+const String insuDataTitle= "Datos del seguro";
+const String insDataName= "Tipo de cobertura";
+
 //Utils
 const String nextButtonLabel= "Siguiente";
 const String quoteButtonLabel= "Cotizar";

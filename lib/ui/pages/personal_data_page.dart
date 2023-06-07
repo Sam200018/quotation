@@ -16,6 +16,7 @@ class PersonalDataPage extends StatelessWidget {
       },
       floatingAction: () {
         //usar go router para ir a la siguiente pagina
+        context.go(AppRouter.insuData);
       },
       backAction: () {
         //usar go router para ir a la siguiente anterior
@@ -91,7 +92,7 @@ class PersonalDataForm extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)), // Ajusta el tamaño de fuente a 10
+        Text(label, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)), // Ajusta el tamaño de fuente a 10
         SizedBox(height: 4),
         TextFormField(
           style: TextStyle(fontSize: 10), // Ajusta el tamaño de fuente a 10
@@ -124,7 +125,7 @@ class PersonalDataForm extends StatelessWidget {
           ),
           padding: EdgeInsets.symmetric(horizontal: 12),
           child: DropdownButtonFormField<String>(
-            style: TextStyle(fontSize: 12),
+            style: TextStyle(fontSize: 12, color: Colors.black),
             decoration: InputDecoration.collapsed(hintText: ''),
             items: items,
             onChanged: (value) {},
