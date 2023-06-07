@@ -15,12 +15,12 @@ class CarsDataSourceImpl implements CarsDataSource {
   ));
 
   @override
-  Future<List<CarModel>> getCarDataByModelAndMake(
-      String make, String model) async {
+  Future<List<CarModel>> getCarDataByModelAndYear(
+      String make, int year) async {
     try {
       final response = await dio.get("/",
           options: Options(headers: {"X-Api-Key": API_KEY}),
-          queryParameters: {"make": make, "model": model, "limit": 50});
+          queryParameters: {"make": make, "year": year, "limit": 50});
       final cars =
           List.from(response.data).map((e) => CarModel.fromJson(e)).toList();
       return cars;

@@ -8,15 +8,15 @@ class CarsRepositoryImpl implements CarsRepository {
   CarsRepositoryImpl(this.carsDataSource);
 
   @override
-  Future<List<CarModel>> getCarDataByModelAndMake(String make, String model) =>
-      getCarDataByModelAndMake(make, model);
+  Future<List<CarModel>> getCarDataByModelAndYear(String make, int year) =>
+      carsDataSource.getCarDataByModelAndYear(make, year);
 
   @override
   Future<CarModel> getCarDataByModelAndMakeAndYear(
           String make, String model, int year) =>
-      getCarDataByModelAndMakeAndYear(make, model, year);
+      carsDataSource.getCarDataByModelAndMakeAndYear(make, model, year);
 
   @override
   Future<List<CarModel>> getCarsDataByMake(String make) =>
-      getCarsDataByMake(make);
+      carsDataSource.getCarsDataByMake(make);
 }
