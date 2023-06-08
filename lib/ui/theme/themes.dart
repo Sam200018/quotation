@@ -14,6 +14,6 @@ final lightTheme = ThemeData(
   ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: appBarColor,
-
+    disabledElevation: 0
   )
 );
