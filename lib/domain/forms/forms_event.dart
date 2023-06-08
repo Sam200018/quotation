@@ -23,7 +23,7 @@ class ChangedModel extends FormsEvent {
 }
 
 class ChangedYear extends FormsEvent {
-  final int year;
+  final String year;
 
   const ChangedYear(this.year);
 
