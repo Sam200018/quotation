@@ -1,7 +1,10 @@
+import 'package:CotizApp/domain/forms/forms_bloc.dart';
 import 'package:CotizApp/ui/pages/quotation_sample.dart';
 import 'package:CotizApp/ui/routes.dart';
+import 'package:CotizApp/ui/utils/quotation_dropdown.dart';
 import 'package:CotizApp/ui/values/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class CarDataPage extends StatelessWidget {
@@ -11,63 +14,70 @@ class CarDataPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return QuotationSample(
-        title: carDataTitle,
-        homeAction: () {
-          context.go(AppRouter.home);
-        },
-        floatingAction: () {
-          //usar go router para ir a la siguiente pagina
-        },
-        backAction: (){
-          //usar go router para ir a la siguiente anterior
-          context.go(AppRouter.home);
-        },
-        content: Column(
-          children: [
-            buildDropdownSection('Marca', 'Seleccione la marca de su auto'),
-            buildDropdownSection('Año', 'Seleccione el año de su auto'),
-            buildDropdownSection('Linea', 'Seleccione la linea de su auto')
-          ],
-        ));
+    return BlocBuilder<FormsBloc, FormsState>(
+      builder: (context, state) {
+        return QuotationSample(
+          title: carDataTitle,
+          homeAction: () {
+            context.go(AppRouter.home);
+          },
+          floatingAction: nextButtonIsEnable(state)
+              ? () {
+                  //usar go router para ir a la siguiente pagina
+                }
+              : null,
+          backAction: () {
+            //usar go router para ir a la siguiente anterior
+            context.go(AppRouter.home);
+          },
+          content: Column(
+            children: [
+              QuotationDropDownButton(
+                title: 'Marca',
+                hintText: state.make.isEmpty
+                    ? 'Seleccione la marca de su auto'
+                    : state.make,
+                dropdownItems: ["mercedes", "toyota"],
+                onChange: (make) {
+                  if (make != null) {
+                    context.read<FormsBloc>().add(ChangedMake(make));
+                  }
+                },
+              ),
+              QuotationDropDownButton(
+                title: 'Año',
+                hintText: state.year.isEmpty
+                    ? 'Seleccione el año de su auto'
+                    : state.year,
+                dropdownItems: state.yearCars,
+                onChange: (year) {
+                  if (year != null) {
+                    context.read<FormsBloc>().add(ChangedYear(year));
+                  }
+                },
+              ),
+              QuotationDropDownButton(
+                title: 'Linea',
+                hintText: state.model.isEmpty
+                    ? 'Seleccione la linea de su auto'
+                    : state.model,
+                dropdownItems: state.modelCars,
+                onChange: (model) {
+                  if (model != null) {
+                    context.read<FormsBloc>().add(ChangedModel(model));
+                  }
+                },
+              )
+            ],
+          ),
+        );
+      },
+    );
   }
 
-  Widget buildDropdownSection(String title, String hintText, {List<String>? dropdownItems}){
-    dropdownItems ??=[];
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(title,
-          style: const TextStyle(fontSize: 18,  fontWeight: FontWeight.bold,),
-        ),
-        Container(
-          width: double.infinity,
-          height: 40,
-          decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.circular(20)
-          ),
-          child: DropdownButton<String>(
-            //dropdownColor: Colors.grey,
-            //borderRadius: BorderRadius.circular(50),
-            //isExpanded: true,
-            hint: Text(hintText),
-            items: dropdownItems.map((String value){
-              return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-              );
-
-            }).toList(),
-            onChanged: (String? newValue){
-              //Manejar el cambio de valor seleccionado
-            },
-            underline: Container(),
-          ),
-
-        ),
-        const SizedBox(height: 60,)
-      ],
-    );
+  bool nextButtonIsEnable(FormsState state) {
+    return state.make.isNotEmpty &&
+        state.year.isNotEmpty &&
+        state.model.isNotEmpty;
   }
 }
