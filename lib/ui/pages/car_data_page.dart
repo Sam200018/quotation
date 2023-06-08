@@ -24,7 +24,50 @@ class CarDataPage extends StatelessWidget {
           context.go(AppRouter.home);
         },
         content: Column(
-          children: [Text("Holita")],
+          children: [
+            buildDropdownSection('Marca', 'Seleccione la marca de su auto'),
+            buildDropdownSection('Año', 'Seleccione el año de su auto'),
+            buildDropdownSection('Linea', 'Seleccione la linea de su auto')
+          ],
         ));
+  }
+
+  Widget buildDropdownSection(String title, String hintText, {List<String>? dropdownItems}){
+    dropdownItems ??=[];
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(title,
+          style: const TextStyle(fontSize: 18,  fontWeight: FontWeight.bold,),
+        ),
+        Container(
+          width: double.infinity,
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.circular(20)
+          ),
+          child: DropdownButton<String>(
+            //dropdownColor: Colors.grey,
+            //borderRadius: BorderRadius.circular(50),
+            //isExpanded: true,
+            hint: Text(hintText),
+            items: dropdownItems.map((String value){
+              return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+              );
+
+            }).toList(),
+            onChanged: (String? newValue){
+              //Manejar el cambio de valor seleccionado
+            },
+            underline: Container(),
+          ),
+
+        ),
+        const SizedBox(height: 60,)
+      ],
+    );
   }
 }
