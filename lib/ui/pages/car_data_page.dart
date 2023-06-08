@@ -32,7 +32,8 @@ class CarDataPage extends StatelessWidget {
         ));
   }
 
-  Widget buildDropdownSection(String title, String hintText){
+  Widget buildDropdownSection(String title, String hintText, {List<String>? dropdownItems}){
+    dropdownItems ??=[];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -41,6 +42,7 @@ class CarDataPage extends StatelessWidget {
         ),
         Container(
           width: double.infinity,
+          height: 40,
           decoration: BoxDecoration(
             color: Colors.grey,
             borderRadius: BorderRadius.circular(20)
@@ -48,15 +50,14 @@ class CarDataPage extends StatelessWidget {
           child: DropdownButton<String>(
             //dropdownColor: Colors.grey,
             //borderRadius: BorderRadius.circular(50),
+            //isExpanded: true,
             hint: Text(hintText),
-            items:<String>[
-              'Opcion 1',
-              'Opcion 2'
-            ].map((String value){
+            items: dropdownItems.map((String value){
               return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
+              value: value,
+              child: Text(value),
               );
+
             }).toList(),
             onChanged: (String? newValue){
               //Manejar el cambio de valor seleccionado
@@ -65,7 +66,7 @@ class CarDataPage extends StatelessWidget {
           ),
 
         ),
-        SizedBox(height: 20,)
+        const SizedBox(height: 60,)
       ],
     );
   }
