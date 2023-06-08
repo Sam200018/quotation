@@ -1,4 +1,5 @@
 import 'package:CotizApp/data/cars_datasource_impl.dart';
+import 'package:CotizApp/domain/forms/forms_bloc.dart';
 import 'package:CotizApp/repository/cars_repository_impl.dart';
 import 'package:CotizApp/ui/routes.dart';
 import 'package:CotizApp/ui/theme/themes.dart';
@@ -21,15 +22,22 @@ class QuotationApp extends StatelessWidget {
               CarsRepositoryImpl(context.read<CarsDataSourceImpl>()),
         ),
       ],
-      child: Sizer(
-        builder: (context, orientation, deviceType) {
-          return MaterialApp.router(
-            title: "CotizApp",
-            routerConfig: AppRouter().router,
-            debugShowCheckedModeBanner: false,
-            theme: lightTheme,
-          );
-        },
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<FormsBloc>(create: (context) {
+            return FormsBloc(context.read<CarsRepositoryImpl>());
+          }),
+        ],
+        child: Sizer(
+          builder: (context, orientation, deviceType) {
+            return MaterialApp.router(
+              title: "CotizApp",
+              routerConfig: AppRouter().router,
+              debugShowCheckedModeBanner: false,
+              theme: lightTheme,
+            );
+          },
+        ),
       ),
     );
   }
