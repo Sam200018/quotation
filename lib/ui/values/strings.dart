@@ -9,4 +9,9 @@ const String carDataTitle= "Datos del automovil";
 const String nextButtonLabel= "Siguiente";
 const String quoteButtonLabel= "Cotizar";
 const String editButtonLabel= "Editar";
-
+const String DropdownMarca = "Marca";
+const String DropdownAnio = "Año";
+const String DropdownLinea = "Línea";
+const String DropdownHintMarca = "Seleccione la marca de su auto";
+const String DropdownHintAnio = "Seleccione el año de su auto";
+const String DropdownHintLinea = "Seleccione la línea de su auto";
