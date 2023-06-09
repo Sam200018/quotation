@@ -2,6 +2,7 @@ import 'package:CotizApp/domain/forms/forms_bloc.dart';
 import 'package:CotizApp/ui/pages/quotation_sample.dart';
 import 'package:CotizApp/ui/routes.dart';
 import 'package:CotizApp/ui/utils/quotation_dropdown.dart';
+import 'package:CotizApp/ui/utils/quotation_stepper.dart';
 import 'package:CotizApp/ui/values/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +33,9 @@ class CarDataPage extends StatelessWidget {
           },
           content: Column(
             children: [
+              QuotationStepper(
+                step: state.screen,
+              ),
               QuotationDropDownButton(
                 title: 'Marca',
                 hintText: state.make.isEmpty
