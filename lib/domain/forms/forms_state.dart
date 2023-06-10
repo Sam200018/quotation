@@ -8,6 +8,7 @@ class FormsState extends Equatable {
       carState,
       maritalStatus,
       city,
+      insuranceType,
       paymentType;
   final List<String> yearCars;
   final List<String> modelCars;
@@ -15,18 +16,19 @@ class FormsState extends Equatable {
 
   const FormsState(
       {this.make = "",
-      this.year = "",
-      this.model = "",
-      this.version = "",
-      this.carState = "",
-      this.maritalStatus = "",
-      this.city = "",
-      this.paymentType = "",
-      this.yearCars = const [],
-      this.modelCars = const [],
-      this.insurance = 0,
-      this.price = 0,
-      this.screen = 0});
+        this.year = "",
+        this.model = "",
+        this.version = "",
+        this.carState = "",
+        this.maritalStatus = "",
+        this.city = "",
+        this.insuranceType = "",
+        this.paymentType = "",
+        this.yearCars = const [],
+        this.modelCars = const [],
+        this.insurance = 0,
+        this.price = 0,
+        this.screen = 0});
 
   @override
   List<Object?> get props => [
@@ -37,6 +39,7 @@ class FormsState extends Equatable {
         carState,
         maritalStatus,
         city,
+        insuranceType,
         paymentType,
         yearCars,
         modelCars,
@@ -55,6 +58,7 @@ class FormsState extends Equatable {
     String? carState,
     String? maritalStatus,
     String? city,
+    String? insuranceType,
     String? paymentType,
     List<String>? yearCars,
     List<String>? modelCars,
@@ -70,6 +74,7 @@ class FormsState extends Equatable {
       carState: carState ?? this.carState,
       maritalStatus: maritalStatus ?? this.maritalStatus,
       city: city ?? this.city,
+      insuranceType: insuranceType ?? this.insuranceType,
       paymentType: paymentType ?? this.paymentType,
       insurance: insurance ?? this.insurance,
       yearCars: yearCars ?? this.yearCars,

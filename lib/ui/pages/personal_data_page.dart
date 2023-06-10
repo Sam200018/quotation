@@ -1,7 +1,13 @@
+import 'package:CotizApp/domain/forms/forms_bloc.dart';
 import 'package:CotizApp/ui/pages/quotation_sample.dart';
 import 'package:CotizApp/ui/routes.dart';
+import 'package:CotizApp/ui/utils/quotation_dropdown.dart';
+import 'package:CotizApp/ui/utils/quotation_stepper.dart';
+import 'package:CotizApp/ui/utils/quotation_textform.dart';
+import 'package:CotizApp/ui/utils/quotation_birthdate.dart';
 import 'package:CotizApp/ui/values/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class PersonalDataPage extends StatelessWidget {
@@ -9,130 +15,105 @@ class PersonalDataPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return QuotationSample(
-      title: persDataTitle,
-      homeAction: () {
-        context.go(AppRouter.home);
+    return BlocBuilder<FormsBloc, FormsState>(
+      builder: (context, state) {
+        DateTime? selectedDate; // Variable para almacenar la fecha seleccionada
+
+        return QuotationSample(
+          title: persDataTitle,
+          homeAction: () {
+            context.go(AppRouter.home);
+          },
+          floatingAction: () {
+            //usar go router para ir a la siguiente pagina
+            context.go(AppRouter.insuData);
+          },
+          backAction: () {
+            //usar go router para ir a la siguiente anterior
+            context.go(AppRouter.carData);
+          },
+          content: Column(
+            children: [
+              QuotationStepper(
+                step: state.screen,
+              ),
+              QuotationTextForm(
+                title: 'Nombre(s)',
+                hintText: 'Introduce tu(s) nombre(s)',
+                controller: context.read<FormsBloc>().name,
+              ),
+              QuotationTextForm(
+                title: 'Apellido(s)',
+                hintText: 'Introduce tu(s) Apellido(s)',
+                controller: context.read<FormsBloc>().lastName,
+              ),
+              QuotationDateBirth(
+                title: 'Fecha de Nacimiento',
+                onPressed: () async {
+                  final DateTime? pickedDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime.now(),
+                  );
+                  if (pickedDate != null) {
+                    selectedDate = pickedDate;
+                  }
+                },
+              ),
+              QuotationDropDownButton(
+                title: 'Estado Civil',
+                hintText: state.maritalStatus.isEmpty
+                    ? 'Selecciona tu Estado civil'
+                    : state.maritalStatus,
+                dropdownItems: [
+                  "Soltero(a)",
+                  "Casado(a)",
+                  "Divorciado(a)",
+                ],
+                onChange: (maritalStatus) {
+                  if (maritalStatus != null) {
+                    context
+                        .read<FormsBloc>()
+                        .add(ChangedMake(maritalStatus));
+                  }
+                },
+                space: 16, // Separación personalizada para esta página
+              ),
+              QuotationDropDownButton(
+                title: 'Delegación',
+                hintText: state.city.isEmpty
+                    ? 'Selecciona tu delegación'
+                    : state.city,
+                dropdownItems: [
+                  "Álvaro Obregón",
+                  "Azcapotzalco",
+                  "Benito Juárez",
+                  "Coyoacán",
+                  "Cuajimalpa de Morelos",
+                  "Cuauhtémoc",
+                  "G.A.M",
+                  "Iztacalco",
+                  "Iztapalapa",
+                  "Magdalena Contreras",
+                  "Miguel Hidalgo",
+                  "Milpa Alta",
+                  "Tláhuac",
+                  "Tlalpan",
+                  "Venustiano Carranza",
+                  "Xochimilco",
+                ],
+                onChange: (city) {
+                  if (city != null) {
+                    context.read<FormsBloc>().add(ChangedMake(city));
+                  }
+                },
+                space: 16, // Separación personalizada para esta página
+              ),
+            ],
+          ),
+        );
       },
-      floatingAction: () {
-        //usar go router para ir a la siguiente pagina
-        context.go(AppRouter.insuData);
-      },
-      backAction: () {
-        //usar go router para ir a la siguiente anterior
-      },
-      content: PersonalDataForm(),
     );
   }
 }
-
-class PersonalDataForm extends StatelessWidget {
-  const PersonalDataForm({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          alignment: Alignment.center,
-          child: Form(
-            child: Column(
-              children: [
-                Expanded( // Envuelve solo las partes necesarias en un Expanded para permitir hacer scroll
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        _buildTextFormField(persDataNameField, persDataName),
-                        SizedBox(height: 10),
-                        _buildTextFormField(persDataLastNameField, persDataLastName),
-                        SizedBox(height: 10),
-                        _buildTextFormField(persDataBirthField, persDataBirth),
-                        SizedBox(height: 10),
-                        _buildDropdown(persDataCivilField, [
-                          DropdownMenuItem(value: "soltero", child: Text("Soltero(a)")),
-                          DropdownMenuItem(value: "casado", child: Text("Casado(a)")),
-                          DropdownMenuItem(value: "divorciado", child: Text("Divorciado(a)")),
-                        ], persDataCivil),
-                        SizedBox(height: 10),
-                        _buildDropdown(persDataDeleField, [
-                          DropdownMenuItem(value: "delegacion1", child: Text("G.A.M")),
-                          DropdownMenuItem(value: "delegacion2", child: Text("Azcapotzalco")),
-                          DropdownMenuItem(value: "delegacion3", child: Text("Benito Juárez")),
-                          DropdownMenuItem(value: "delegacion4", child: Text("Coyoacán")),
-                          DropdownMenuItem(value: "delegacion5", child: Text("Cuajimalpa de Morelos")),
-                          DropdownMenuItem(value: "delegacion6", child: Text("Cuauhtémoc")),
-                          DropdownMenuItem(value: "delegacion7", child: Text("Iztacalco")),
-                          DropdownMenuItem(value: "delegacion8", child: Text("Iztapalapa")),
-                          DropdownMenuItem(value: "delegacion9", child: Text("Magdalena Contreras")),
-                          DropdownMenuItem(value: "delegacion10", child: Text("Miguel Hidalgo")),
-                          DropdownMenuItem(value: "delegacion11", child: Text("Milpa Alta")),
-                          DropdownMenuItem(value: "delegacion12", child: Text("Tláhuac")),
-                          DropdownMenuItem(value: "delegacion13", child: Text("Tlalpan")),
-                          DropdownMenuItem(value: "delegacion14", child: Text("Venustiano Carranza")),
-                          DropdownMenuItem(value: "delegacion15", child: Text("Xochimilco")),
-                          DropdownMenuItem(value: "delegacion16", child: Text("Álvaro Obregón")),
-                        ], persDataDele),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-  Widget _buildTextFormField(String hintText, String label) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)), // Ajusta el tamaño de fuente a 10
-        SizedBox(height: 4),
-        TextFormField(
-          style: TextStyle(fontSize: 10), // Ajusta el tamaño de fuente a 10
-          decoration: InputDecoration(
-            hintText: hintText,
-            hintStyle: TextStyle(color: Colors.black38),
-            filled: true,
-            fillColor: Colors.black12,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30), // Reduce el tamaño del borderRadius a 30
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildDropdown(String hintText, List<DropdownMenuItem<String>> items,
-      String label) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-        SizedBox(height: 4),
-        Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.black12,
-            borderRadius: BorderRadius.circular(40),
-          ),
-          padding: EdgeInsets.symmetric(horizontal: 12),
-          child: DropdownButtonFormField<String>(
-            style: TextStyle(fontSize: 12, color: Colors.black),
-            decoration: InputDecoration.collapsed(hintText: ''),
-            items: items,
-            onChanged: (value) {},
-            hint: Text(hintText),
-            isDense: true,
-          ),
-        ),
-      ],
-    );
-  }
