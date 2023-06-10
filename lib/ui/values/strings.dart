@@ -3,7 +3,8 @@ const String beginButtonLabel = "Comenzar";
 const String protectMessage= "Protege lo que mas quieres con un solo click";
 
 // Car data
-const String carDataTitle= "Datos del automovil";
+const String carDataTitle= "Datos del automóvil";
+const String stateCarTitle="Estado del automóvil";
 
 //Utils
 const String nextButtonLabel= "Siguiente";

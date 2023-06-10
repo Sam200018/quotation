@@ -27,6 +27,8 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
     on<ChangedMake>(changedMakeToState);
     on<ChangedYear>(changedYearToState);
     on<ChangedModel>(changedModelToState);
+    on<ChangedVersion>(changedVersionToState);
+    on<ChangedCarState>(changedCarStateToState);
   }
 
   Future<void> changedMakeToState(
@@ -48,4 +50,16 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
   void changedModelToState(ChangedModel event, Emitter<FormsState> emit) {
     emit(state.update(model: event.model));
   }
+
+  Future<void> changedVersionToState(ChangedVersion event, Emitter<FormsState> emit) async{
+    emit(state.update(version: event.version));
+  }
+
+  Future<void> changedCarStateToState(ChangedCarState event, Emitter<FormsState> emit) async{
+    emit(state.update(carState: event.carState));
+  }
 }
+
+
+
+
