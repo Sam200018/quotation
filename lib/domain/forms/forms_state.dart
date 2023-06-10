@@ -1,88 +1,79 @@
 part of 'forms_bloc.dart';
 
 class FormsState extends Equatable {
-  final bool isMakeSelected,
-      isYearSelected,
-      isModelSelected,
-      isVersionSelected,
-      isCarStateSelected,
-      isNameValid,
-      isLastNameValid,
-      isBirthdaySelected,
-      isMaritalStatusSelected,
-      isCitySelected,
-      isSecureSelected,
-      isPaymentTypeSelected;
-  final int price;
-  final int screen;
+  final String make,
+      year,
+      model,
+      version,
+      carState,
+      maritalStatus,
+      city,
+      paymentType;
+  final List<String> yearCars;
+  final List<String> modelCars;
+  final int insurance, price, screen;
 
   const FormsState(
-      {this.isMakeSelected = true,
-      this.isYearSelected = true,
-      this.isModelSelected = true,
-      this.isVersionSelected = true,
-      this.isCarStateSelected = true,
-      this.isNameValid = true,
-      this.isLastNameValid = true,
-      this.isBirthdaySelected = true,
-      this.isMaritalStatusSelected = true,
-      this.isCitySelected = true,
-      this.isSecureSelected = true,
-      this.isPaymentTypeSelected = true,
+      {this.make = "",
+      this.year = "",
+      this.model = "",
+      this.version = "",
+      this.carState = "",
+      this.maritalStatus = "",
+      this.city = "",
+      this.paymentType = "",
+      this.yearCars = const [],
+      this.modelCars = const [],
+      this.insurance = 0,
       this.price = 0,
       this.screen = 0});
 
   @override
   List<Object?> get props => [
-        isMakeSelected,
-        isYearSelected,
-        isModelSelected,
-        isVersionSelected,
-        isCarStateSelected,
-        isNameValid,
-        isLastNameValid,
-        isBirthdaySelected,
-        isMaritalStatusSelected,
-        isCitySelected,
-        isSecureSelected,
-        isPaymentTypeSelected,
+        make,
+        year,
+        model,
+        version,
+        carState,
+        maritalStatus,
+        city,
+        paymentType,
+        yearCars,
+        modelCars,
+        insurance,
         price,
         screen
       ];
 
   factory FormsState.initial() => const FormsState();
 
-  FormsState copyWith({
-    bool? isMakeSelected,
-    bool? isYearSelected,
-    bool? isModelSelected,
-    bool? isVersionSelected,
-    bool? isCarStateSelected,
-    bool? isNameValid,
-    bool? isLastNameValid,
-    bool? isBirthdaySelected,
-    bool? isMaritalStatusSelected,
-    bool? isCitySelected,
-    bool? isSecureSelected,
-    bool? isPaymentTypeSelected,
+  FormsState update({
+    String? make,
+    String? year,
+    String? model,
+    String? version,
+    String? carState,
+    String? maritalStatus,
+    String? city,
+    String? paymentType,
+    List<String>? yearCars,
+    List<String>? modelCars,
+    int? insurance,
     int? price,
     int? screen,
   }) {
     return FormsState(
-      isMakeSelected: isMakeSelected ?? this.isMakeSelected,
-      isYearSelected: isYearSelected ?? this.isYearSelected,
-      isModelSelected: isModelSelected ?? this.isModelSelected,
-      isVersionSelected: isVersionSelected ?? this.isVersionSelected,
-      isCarStateSelected: isCarStateSelected ?? this.isCarStateSelected,
-      isNameValid: isNameValid ?? this.isNameValid,
-      isLastNameValid: isLastNameValid ?? this.isLastNameValid,
-      isBirthdaySelected: isBirthdaySelected ?? this.isBirthdaySelected,
-      isMaritalStatusSelected:
-          isMaritalStatusSelected ?? this.isMaritalStatusSelected,
-      isCitySelected: isCitySelected ?? this.isCitySelected,
-      isSecureSelected: isSecureSelected ?? this.isSecureSelected,
-      isPaymentTypeSelected:
-          isPaymentTypeSelected ?? this.isPaymentTypeSelected,
+      make: make ?? this.make,
+      year: year ?? this.year,
+      model: model ?? this.model,
+      version: version ?? this.version,
+      carState: carState ?? this.carState,
+      maritalStatus: maritalStatus ?? this.maritalStatus,
+      city: city ?? this.city,
+      paymentType: paymentType ?? this.paymentType,
+      insurance: insurance ?? this.insurance,
+      yearCars: yearCars ?? this.yearCars,
+      modelCars: modelCars ?? this.modelCars,
       price: price ?? this.price,
       screen: screen ?? this.screen,
     );

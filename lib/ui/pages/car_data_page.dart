@@ -1,7 +1,11 @@
+import 'package:CotizApp/domain/forms/forms_bloc.dart';
 import 'package:CotizApp/ui/pages/quotation_sample.dart';
 import 'package:CotizApp/ui/routes.dart';
+import 'package:CotizApp/ui/utils/quotation_dropdown.dart';
+import 'package:CotizApp/ui/utils/quotation_stepper.dart';
 import 'package:CotizApp/ui/values/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class CarDataPage extends StatelessWidget {
@@ -11,20 +15,73 @@ class CarDataPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return QuotationSample(
-        title: carDataTitle,
-        homeAction: () {
-          context.go(AppRouter.home);
-        },
-        floatingAction: () {
-          //usar go router para ir a la siguiente pagina
-        },
-        backAction: (){
-          //usar go router para ir a la siguiente anterior
-          context.go(AppRouter.home);
-        },
-        content: Column(
-          children: [Text("Holita")],
-        ));
+    return BlocBuilder<FormsBloc, FormsState>(
+      builder: (context, state) {
+        return QuotationSample(
+          title: carDataTitle,
+          homeAction: () {
+            context.go(AppRouter.home);
+          },
+          floatingAction: nextButtonIsEnable(state)
+              ? () {
+                  //usar go router para ir a la siguiente pagina
+                }
+              : null,
+          backAction: () {
+            //usar go router para ir a la siguiente anterior
+            context.go(AppRouter.home);
+          },
+          content: Column(
+            children: [
+              QuotationStepper(
+                step: state.screen,
+              ),
+              QuotationDropDownButton(
+                title: 'Marca',
+                hintText: state.make.isEmpty
+                    ? 'Seleccione la marca de su auto'
+                    : state.make,
+                dropdownItems: ["mercedes", "toyota"],
+                onChange: (make) {
+                  if (make != null) {
+                    context.read<FormsBloc>().add(ChangedMake(make));
+                  }
+                },
+              ),
+              QuotationDropDownButton(
+                title: 'Año',
+                hintText: state.year.isEmpty
+                    ? 'Seleccione el año de su auto'
+                    : state.year,
+                dropdownItems: state.yearCars,
+                onChange: (year) {
+                  if (year != null) {
+                    context.read<FormsBloc>().add(ChangedYear(year));
+                  }
+                },
+              ),
+              QuotationDropDownButton(
+                title: 'Linea',
+                hintText: state.model.isEmpty
+                    ? 'Seleccione la linea de su auto'
+                    : state.model,
+                dropdownItems: state.modelCars,
+                onChange: (model) {
+                  if (model != null) {
+                    context.read<FormsBloc>().add(ChangedModel(model));
+                  }
+                },
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  bool nextButtonIsEnable(FormsState state) {
+    return state.make.isNotEmpty &&
+        state.year.isNotEmpty &&
+        state.model.isNotEmpty;
   }
 }

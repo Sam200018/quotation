@@ -77,7 +77,7 @@ class QuotationSample extends StatelessWidget {
               ),
               alignment: Alignment.center,
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+                padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 10.w),
                 child: content,
               ),
             ),
