@@ -68,8 +68,7 @@ class StateCarPage extends StatelessWidget {
   }
 
   bool nextButtonIsEnable(FormsState state) {
-    return state.make.isNotEmpty &&
-        state.year.isNotEmpty &&
-        state.model.isNotEmpty;
+    return state.version.isNotEmpty &&
+        state.carState.isNotEmpty;
   }
 }
