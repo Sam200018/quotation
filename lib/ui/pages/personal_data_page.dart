@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:CotizApp/domain/forms/forms_bloc.dart';
 import 'package:CotizApp/ui/pages/quotation_sample.dart';
 import 'package:CotizApp/ui/routes.dart';
@@ -6,9 +9,6 @@ import 'package:CotizApp/ui/utils/quotation_stepper.dart';
 import 'package:CotizApp/ui/utils/quotation_textform.dart';
 import 'package:CotizApp/ui/utils/quotation_birthdate.dart';
 import 'package:CotizApp/ui/values/strings.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class PersonalDataPage extends StatelessWidget {
   const PersonalDataPage({Key? key}) : super(key: key);
@@ -49,16 +49,8 @@ class PersonalDataPage extends StatelessWidget {
               ),
               QuotationDateBirth(
                 title: 'Fecha de Nacimiento',
-                onPressed: () async {
-                  final DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(1900),
-                    lastDate: DateTime.now(),
-                  );
-                  if (pickedDate != null) {
-                    selectedDate = pickedDate;
-                  }
+                onPressed: (date) {
+                  selectedDate = date; // Actualizar la fecha seleccionada
                 },
               ),
               QuotationDropDownButton(
@@ -73,9 +65,7 @@ class PersonalDataPage extends StatelessWidget {
                 ],
                 onChange: (maritalStatus) {
                   if (maritalStatus != null) {
-                    context
-                        .read<FormsBloc>()
-                        .add(ChangedMake(maritalStatus));
+                    context.read<FormsBloc>().add(ChangedMake(maritalStatus));
                   }
                 },
                 space: 16, // Separación personalizada para esta página
