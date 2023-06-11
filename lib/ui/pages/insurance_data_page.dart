@@ -40,34 +40,37 @@ class InsuranceDataPage extends StatelessWidget {
                   dropdownItems: ["Limitada", "No"],
                   onChange: (insuranceType) {
                     if (insuranceType != null) {
-                      context.read<FormsBloc>().add(ChangedMake(insuranceType));
+                      context.read<FormsBloc>().add(ChangedInsuranceType(insuranceType));
                     }
                   },
                 ),
+
                 QuotationDropDownButton(
                   title: '',
-                  hintText: state.insuranceType.isEmpty
+                  hintText: state.insuranceType2.isEmpty
                       ? 'Selecciona tu tipo de cobertura'
-                      : state.insuranceType,
+                      : state.insuranceType2,
                   dropdownItems: ["Amplia", "No"],
-                  onChange: (insuranceType) {
-                    if (insuranceType != null) {
-                      context.read<FormsBloc>().add(ChangedMake(insuranceType));
+                  onChange: (insuranceType2) {
+                    if (insuranceType2 != null) {
+                      context.read<FormsBloc>().add(ChangedInsuranceType2(insuranceType2));
                     }
                   },
                 ),
+
                 QuotationDropDownButton(
                   title: '',
-                  hintText: state.insuranceType.isEmpty
+                  hintText: state.insuranceType3.isEmpty
                       ? 'Selecciona tu tipo de cobertura'
-                      : state.insuranceType,
+                      : state.insuranceType3,
                   dropdownItems: ["Amplia Plus", "No"],
-                  onChange: (insuranceType) {
-                    if (insuranceType != null) {
-                      context.read<FormsBloc>().add(ChangedMake(insuranceType));
+                  onChange: (insuranceType3) {
+                    if (insuranceType3 != null) {
+                      context.read<FormsBloc>().add(ChangedInsuranceType3(insuranceType3));
                     }
                   },
                 ),
+
               ],
             ),
           );
@@ -75,7 +78,3 @@ class InsuranceDataPage extends StatelessWidget {
     );
   }
 }
-
-
-
-

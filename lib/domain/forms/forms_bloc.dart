@@ -20,6 +20,9 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
   final paymentType = TextEditingController();
   final marital = TextEditingController();
   final city = TextEditingController();
+  final insuranceType = TextEditingController();
+  final insuranceType2 = TextEditingController();
+  final insuranceType3 = TextEditingController();
   final carState = TextEditingController();
   CarModel car = CarModel.empty();
 
@@ -27,6 +30,9 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
     on<ChangedMake>(changedMakeToState);
     on<ChangedYear>(changedYearToState);
     on<ChangedModel>(changedModelToState);
+    on<ChangedInsuranceType>(changedInsuranceTypeToState);
+    on<ChangedInsuranceType2>(changedInsuranceType2ToState);
+    on<ChangedInsuranceType3>(changedInsuranceType3ToState);
   }
 
   Future<void> changedMakeToState(
@@ -48,4 +54,22 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
   void changedModelToState(ChangedModel event, Emitter<FormsState> emit) {
     emit(state.update(model: event.model));
   }
+  void changedInsuranceTypeToState(
+      ChangedInsuranceType event, Emitter<FormsState> emit) {
+    final updatedState = state.update(insuranceType: event.insuranceType);
+    emit(updatedState);
+  }
+
+  void changedInsuranceType2ToState(
+      ChangedInsuranceType2 event, Emitter<FormsState> emit) {
+    final updatedState = state.update(insuranceType2: event.insuranceType2);
+    emit(updatedState);
+  }
+
+  void changedInsuranceType3ToState(
+      ChangedInsuranceType3 event, Emitter<FormsState> emit) {
+    final updatedState = state.update(insuranceType3: event.insuranceType3);
+    emit(updatedState);
+  }
+
 }

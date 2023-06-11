@@ -9,6 +9,8 @@ class FormsState extends Equatable {
       maritalStatus,
       city,
       insuranceType,
+      insuranceType2,
+      insuranceType3,
       paymentType;
   final List<String> yearCars;
   final List<String> modelCars;
@@ -23,6 +25,8 @@ class FormsState extends Equatable {
         this.maritalStatus = "",
         this.city = "",
         this.insuranceType = "",
+        this.insuranceType2 = "",
+        this.insuranceType3 = "",
         this.paymentType = "",
         this.yearCars = const [],
         this.modelCars = const [],
@@ -40,13 +44,15 @@ class FormsState extends Equatable {
         maritalStatus,
         city,
         insuranceType,
+        insuranceType2,
+        insuranceType3,
         paymentType,
         yearCars,
         modelCars,
         insurance,
         price,
         screen
-      ];
+  ];
 
   factory FormsState.initial() => const FormsState();
 
@@ -59,6 +65,8 @@ class FormsState extends Equatable {
     String? maritalStatus,
     String? city,
     String? insuranceType,
+    String? insuranceType2,
+    String? insuranceType3,
     String? paymentType,
     List<String>? yearCars,
     List<String>? modelCars,
@@ -75,6 +83,8 @@ class FormsState extends Equatable {
       maritalStatus: maritalStatus ?? this.maritalStatus,
       city: city ?? this.city,
       insuranceType: insuranceType ?? this.insuranceType,
+      insuranceType2: insuranceType2 ?? this.insuranceType2,
+      insuranceType3: insuranceType3 ?? this.insuranceType3,
       paymentType: paymentType ?? this.paymentType,
       insurance: insurance ?? this.insurance,
       yearCars: yearCars ?? this.yearCars,
