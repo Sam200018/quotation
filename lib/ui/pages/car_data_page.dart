@@ -25,6 +25,7 @@ class CarDataPage extends StatelessWidget {
           floatingAction: nextButtonIsEnable(state)
               ? () {
                   context.go(AppRouter.stateCar);
+                  context.read<FormsBloc>().add(Next());
                 }
               : null,
           backAction: () {

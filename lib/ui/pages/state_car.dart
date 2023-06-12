@@ -24,12 +24,13 @@ class StateCarPage extends StatelessWidget {
           },
           floatingAction: nextButtonIsEnable(state)
               ? () {
-            //usar go router para ir a la siguiente pagina
-          }
+                  //usar go router para ir a la siguiente pagina
+                }
               : null,
           backAction: () {
             //usar go router para ir a la siguiente anterior
             context.go(AppRouter.carData);
+            context.read<FormsBloc>().add(Previous());
           },
           content: Column(
             children: [
@@ -68,7 +69,6 @@ class StateCarPage extends StatelessWidget {
   }
 
   bool nextButtonIsEnable(FormsState state) {
-    return state.version.isNotEmpty &&
-        state.carState.isNotEmpty;
+    return state.version.isNotEmpty && state.carState.isNotEmpty;
   }
 }

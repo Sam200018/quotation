@@ -40,12 +40,21 @@ class ChangedVersion extends FormsEvent {
   List<Object?> get props => [version];
 }
 
-
-class ChangedCarState extends FormsEvent{
+class ChangedCarState extends FormsEvent {
   final String carState;
+
   const ChangedCarState(this.carState);
 
   @override
   List<Object?> get props => [carState];
 }
 
+class Next extends FormsEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+class Previous extends FormsEvent {
+  @override
+  List<Object?> get props => [];
+}
