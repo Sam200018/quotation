@@ -29,6 +29,9 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
     on<ChangedModel>(changedModelToState);
     on<ChangedVersion>(changedVersionToState);
     on<ChangedCarState>(changedCarStateToState);
+    on<ChangedMaritalStatus>(changedMaritalStatusToState);
+    on<ChangedCity>(changedCityToState);
+    on<ChangedInsurance>(changedInsuranceToState);
     on<Next>(nextToState);
     on<Previous>(previousToState);
   }
@@ -69,5 +72,19 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
 
   void previousToState(Previous event, Emitter<FormsState> emit) {
     emit(state.update(screen: state.screen - 1));
+  }
+
+  void changedMaritalStatusToState(
+      ChangedMaritalStatus event, Emitter<FormsState> emit) {
+    emit(state.update(maritalStatus: event.maritalStatus));
+  }
+
+  void changedCityToState(ChangedCity event, Emitter<FormsState> emit) {
+    emit(state.update(city: event.city));
+  }
+
+  void changedInsuranceToState(
+      ChangedInsurance event, Emitter<FormsState> emit) {
+    emit(state.update(insurance: event.insurance));
   }
 }

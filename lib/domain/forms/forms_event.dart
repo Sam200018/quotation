@@ -49,6 +49,32 @@ class ChangedCarState extends FormsEvent {
   List<Object?> get props => [carState];
 }
 
+class ChangedMaritalStatus extends FormsEvent {
+  final String maritalStatus;
+
+  const ChangedMaritalStatus(this.maritalStatus);
+
+  @override
+  List<Object?> get props => [maritalStatus];
+}
+
+class ChangedCity extends FormsEvent {
+  final String city;
+
+  const ChangedCity(this.city);
+
+  @override
+  List<Object?> get props => [city];
+}
+class ChangedInsurance extends FormsEvent {
+  final int insurance;
+
+  const ChangedInsurance(this.insurance);
+
+  @override
+  List<Object?> get props => [insurance];
+}
+
 class Next extends FormsEvent {
   @override
   List<Object?> get props => [];
