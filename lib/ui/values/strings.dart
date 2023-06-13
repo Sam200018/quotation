@@ -1,15 +1,42 @@
 // Home page
 const String beginButtonLabel = "Comenzar";
-const String protectMessage= "Protege lo que mas quieres con un solo click";
+const String protectMessage = "Protege lo que mas quieres con un solo click";
 
 // Car data
-const String carDataTitle= "Datos del automóvil";
-const String stateCarTitle="Estado del automóvil";
+const String carDataTitle = "Datos del automóvil";
+
+// Car state
+const String stateCarTitle = "Estado del automóvil";
+
+// Personal data
+const String persDataTitle = "Datos Personales";
+
+// Insurance data
+const String insuDataTitle = "Datos del seguro";
+const String insuranceTitleType1 = "Amplia";
+const String insuranceType1 = "Resposabildad civil, bienes y personas\n"
+    "Asistencia vial\n"
+    "Gastos medicos\n"
+    "Robo parcial\n";
+const String insuranceTitleType2 = "Amplia";
+const String insuranceType2 = "Resposabildad civil, bienes y personas\n"
+    "Asistencia vial\n"
+    "Gastos medicos\n"
+    "Robo total\n"
+    "Daños materiales\n";
+const String insuranceTitleType3 = "Amplia Plus";
+const String insuranceType3 = "Resposabildad civil, bienes y personas\n"
+    "Asistencia vial\n"
+    "Gastos medicos\n"
+    "Robo total\n"
+    "Daños materiales\n"
+    "Coberturas y beneficios adicionales\n"
+    "Equipo especial";
 
 //Utils
-const String nextButtonLabel= "Siguiente";
-const String quoteButtonLabel= "Cotizar";
-const String editButtonLabel= "Editar";
+const String nextButtonLabel = "Siguiente";
+const String quoteButtonLabel = "Cotizar";
+const String editButtonLabel = "Editar";
 const String DropdownMarca = "Marca";
 const String DropdownAnio = "Año";
 const String DropdownLinea = "Línea";
