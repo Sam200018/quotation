@@ -41,7 +41,7 @@ class CarDataPage extends StatelessWidget {
                 hintText: state.make.isEmpty
                     ? 'Seleccione la marca de su auto'
                     : state.make,
-                dropdownItems: ["mercedes", "toyota"],
+                dropdownItems: ["Nissan", "Toyota", "KIA", "Volkswagen", "Mazda"],
                 onChange: (make) {
                   if (make != null) {
                     context.read<FormsBloc>().add(ChangedMake(make));
