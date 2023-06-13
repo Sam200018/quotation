@@ -13,7 +13,8 @@ const String persDataTitle = "Datos Personales";
 
 // Insurance data
 const String insuDataTitle = "Datos del seguro";
-const String insuranceTitleType1 = "Amplia";
+const String insuTitle = "Tipo de cobertura";
+const String insuranceTitleType1 = "Limitada";
 const String insuranceType1 = "Resposabildad civil, bienes y personas\n"
     "Asistencia vial\n"
     "Gastos medicos\n"
@@ -32,6 +33,16 @@ const String insuranceType3 = "Resposabildad civil, bienes y personas\n"
     "Daños materiales\n"
     "Coberturas y beneficios adicionales\n"
     "Equipo especial";
+
+//Result page
+const String quotationTitle= "Cotización";
+const String resultLabel= "¡Aquí está su cotización, ";
+const String descriptionLabel= "Descripción:";
+const String insuranceLabel= "Cobertura";
+const String frequencyLabel= "Frecuencia de pago";
+const String frequencyButtonLabel= "Selecciona la frecuencia ";
+const String costLabel= "El costo anual es de";
+
 
 //Utils
 const String nextButtonLabel = "Siguiente";
