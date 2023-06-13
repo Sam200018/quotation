@@ -6,7 +6,7 @@ class QuotationDropDownButton extends StatelessWidget {
   final List<String>? dropdownItems;
   final ValueChanged<String?> onChange;
 
-   const QuotationDropDownButton(
+  const QuotationDropDownButton(
       {super.key,
       required this.title,
       required this.hintText,
@@ -29,11 +29,9 @@ class QuotationDropDownButton extends StatelessWidget {
           width: double.infinity,
           height: 40,
           decoration: BoxDecoration(
-              color: Colors.grey, borderRadius: BorderRadius.circular(20)),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(style: BorderStyle.solid, color: Colors.grey)),
           child: DropdownButton<String>(
-            //dropdownColor: Colors.grey,
-            //borderRadius: BorderRadius.circular(50),
-            //isExpanded: true,
             padding: const EdgeInsets.all(10),
             hint: Text(hintText),
             items: dropdownItems?.map((String value) {
