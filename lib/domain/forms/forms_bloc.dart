@@ -84,7 +84,104 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
 
   void changedPaymentTypeToState(
       ChangedPaymentType event, Emitter<FormsState> emit) {
-    emit(state.update(paymentType: event.paymentType));
+    emit(state.update(paymentType: event.paymentType,price: 0.0));
+    const basePrice = 8000;
+    var result = 0.0;
+    if (DateTime.now().year - int.parse(state.year) < 5) {
+      result = (basePrice + basePrice * .10);
+    } else {
+      result = (basePrice + basePrice * .20);
+    }
+    switch (state.version) {
+      case "Basica":
+        {
+          result += basePrice * .10;
+        }
+        break;
+      case "Equipada":
+        {
+          result += basePrice * .20;
+        }
+        break;
+      case "Super equipada":
+        {
+          result += basePrice * .30;
+        }
+        break;
+    }
+
+    switch (state.carState) {
+      case "Nuevo":
+        {
+          result += basePrice * .10;
+        }
+        break;
+      case "Semi-Nuevo":
+        {
+          result += basePrice * .20;
+        }
+        break;
+      case "Usado":
+        {
+          result += basePrice * .30;
+        }
+        break;
+    }
+
+    switch (state.maritalStatus) {
+      case "Soltero(a)":
+        {
+          result += basePrice * .10;
+        }
+        break;
+      case "Casado(a)":
+        {
+          result += basePrice * .30;
+        }
+        break;
+      case "Divorciado(a)":
+        {
+          result += basePrice * .20;
+        }
+        break;
+    }
+    switch (state.paymentType) {
+      case "mensual":
+        {
+          result += basePrice * .20;
+        }
+        break;
+      case "semestral":
+        {
+          result += basePrice * .05;
+        }
+        break;
+      case "anual":
+        {
+          result -= basePrice * .20;
+        }
+        break;
+    }
+    switch (state.insurance) {
+      case 1:
+        {
+          result += basePrice * .10;
+        }
+        break;
+      case 2:
+        {
+          result += basePrice * .30;
+        }
+        break;
+      case 3:
+        {
+          result += basePrice * .20;
+        }
+        break;
+    }
+
+
+    emit(state.update(paymentType: event.paymentType,price: result));
     // TODO: hacer todo el calculo aca
   }
 }

@@ -11,7 +11,8 @@ class FormsState extends Equatable {
       paymentType;
   final List<String> yearCars;
   final List<String> modelCars;
-  final int insurance, price, screen;
+  final int insurance, screen;
+  final double price;
 
   const FormsState(
       {this.make = "",
@@ -59,7 +60,7 @@ class FormsState extends Equatable {
     List<String>? yearCars,
     List<String>? modelCars,
     int? insurance,
-    int? price,
+    double? price,
     int? screen,
   }) {
     return FormsState(
