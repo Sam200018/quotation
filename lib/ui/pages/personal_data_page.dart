@@ -69,13 +69,15 @@ class PersonalDataPage extends StatelessWidget {
                 ],
                 onChange: (maritalStatus) {
                   if (maritalStatus != null) {
-                    context.read<FormsBloc>().add(ChangedMaritalStatus(maritalStatus));
+                    context
+                        .read<FormsBloc>()
+                        .add(ChangedMaritalStatus(maritalStatus));
                   }
                 },
                 // Separación personalizada para esta página
               ),
               QuotationDropDownButton(
-                title: state.city.isEmpty ? 'Delegación' : state.city,
+                title: 'Delegación',
                 hintText: state.city.isEmpty
                     ? 'Selecciona tu delegación'
                     : state.city,
