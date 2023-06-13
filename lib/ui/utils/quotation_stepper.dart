@@ -38,7 +38,7 @@ class QuotationStepper extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Icon(
-                    Icons.build,
+                    Icons.build_circle_outlined,
                     color: index - 1 >= step ? null : appBarColor,
                   ),
                   const SizedBox(
@@ -57,7 +57,7 @@ class QuotationStepper extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Icon(
-                    Icons.person,
+                    Icons.account_circle_outlined,
                     color: index - 1 >= step ? null : appBarColor,
                   ),
                   const SizedBox(
@@ -75,7 +75,7 @@ class QuotationStepper extends StatelessWidget {
               return Row(
                 children: [
                   Icon(
-                    Icons.health_and_safety,
+                    Icons.health_and_safety_outlined,
                     color: index - 1 >= step ? null : appBarColor,
                   ),
                   const SizedBox(
@@ -94,7 +94,7 @@ class QuotationStepper extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Icon(
-                    Icons.list_alt,
+                    Icons.list_alt_rounded,
                     color: index - 1 >= step ? null : appBarColor,
                   ),
                 ],
