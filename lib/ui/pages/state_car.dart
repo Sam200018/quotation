@@ -25,6 +25,8 @@ class StateCarPage extends StatelessWidget {
           floatingAction: nextButtonIsEnable(state)
               ? () {
                   //usar go router para ir a la siguiente pagina
+                  context.go(AppRouter.persData);
+                  context.read<FormsBloc>().add(Next());
                 }
               : null,
           backAction: () {
