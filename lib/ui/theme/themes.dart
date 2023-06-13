@@ -9,11 +9,15 @@ final lightTheme = ThemeData(
     filled: true,
     fillColor: Colors.white,
   ),
-  appBarTheme: const AppBarTheme(
-    backgroundColor: appBarColor
-  ),
+  appBarTheme: const AppBarTheme(backgroundColor: appBarColor),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
-    backgroundColor: appBarColor,
-    disabledElevation: 0
-  )
+      backgroundColor: appBarColor, disabledElevation: 0),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      foregroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.0),
+      ),
+    ),
+  ),
 );
