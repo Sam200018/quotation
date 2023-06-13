@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:CotizApp/domain/repository/CarsRepository.dart';
-import 'package:CotizApp/model/car.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,12 +14,7 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
   final name = TextEditingController();
   final lastName = TextEditingController();
   final birthday = TextEditingController();
-  final cover = TextEditingController();
-  final paymentType = TextEditingController();
   final marital = TextEditingController();
-  final city = TextEditingController();
-  final carState = TextEditingController();
-  CarModel car = CarModel.empty();
 
   FormsBloc(this.carsRepository) : super(FormsState.initial()) {
     on<ChangedMake>(changedMakeToState);
@@ -32,6 +25,7 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
     on<ChangedMaritalStatus>(changedMaritalStatusToState);
     on<ChangedCity>(changedCityToState);
     on<ChangedInsurance>(changedInsuranceToState);
+    on<ChangedPaymentType>(changedPaymentTypeToState);
     on<Next>(nextToState);
     on<Previous>(previousToState);
   }
@@ -86,5 +80,11 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
   void changedInsuranceToState(
       ChangedInsurance event, Emitter<FormsState> emit) {
     emit(state.update(insurance: event.insurance));
+  }
+
+  void changedPaymentTypeToState(
+      ChangedPaymentType event, Emitter<FormsState> emit) {
+    emit(state.update(paymentType: event.paymentType));
+    // TODO: hacer todo el calculo aca
   }
 }

@@ -66,6 +66,7 @@ class ChangedCity extends FormsEvent {
   @override
   List<Object?> get props => [city];
 }
+
 class ChangedInsurance extends FormsEvent {
   final int insurance;
 
@@ -73,6 +74,15 @@ class ChangedInsurance extends FormsEvent {
 
   @override
   List<Object?> get props => [insurance];
+}
+
+class ChangedPaymentType extends FormsEvent {
+  final String paymentType;
+
+  const ChangedPaymentType(this.paymentType);
+
+  @override
+  List<Object?> get props => [paymentType];
 }
 
 class Next extends FormsEvent {
