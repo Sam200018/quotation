@@ -35,14 +35,13 @@ const String insuranceType3 = "Resposabildad civil, bienes y personas\n"
     "Equipo especial";
 
 //Result page
-const String quotationTitle= "Cotización";
-const String resultLabel= "¡Aquí está su cotización, ";
-const String descriptionLabel= "Descripción:";
-const String insuranceLabel= "Cobertura";
-const String frequencyLabel= "Frecuencia de pago";
-const String frequencyButtonLabel= "Selecciona la frecuencia ";
-const String costLabel= "El costo anual es de";
-
+const String quotationTitle = "Cotización";
+const String resultLabel = "¡Aquí está su cotización, ";
+const String descriptionLabel = "Descripción:";
+const String insuranceLabel = "Cobertura";
+const String frequencyLabel = "Frecuencia de pago";
+const String frequencyButtonLabel = "Selecciona la frecuencia ";
+const String costLabel = "El costo anual es de";
 
 //Utils
 const String nextButtonLabel = "Siguiente";
@@ -54,3 +53,5 @@ const String DropdownLinea = "Línea";
 const String DropdownHintMarca = "Seleccione la marca de su auto";
 const String DropdownHintAnio = "Seleccione el año de su auto";
 const String DropdownHintLinea = "Seleccione la línea de su auto";
+const String snackBarErrorLabel =
+    "Lo siento, no fue posible recuperar la informacion";
