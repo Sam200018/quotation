@@ -15,75 +15,85 @@ class CarDataPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FormsBloc, FormsState>(
-      builder: (context, state) {
-        return QuotationSample(
-          title: carDataTitle,
-          homeAction: () {
-            context.go(AppRouter.home);
-          },
-          floatingAction: nextButtonIsEnable(state)
-              ? () {
-                  context.go(AppRouter.stateCar);
-                  context.read<FormsBloc>().add(Next());
-                }
-              : null,
-          backAction: () {
-            //usar go router para ir a la siguiente anterior
-            context.go(AppRouter.home);
-          },
-          content: Column(
-            children: [
-              QuotationStepper(
-                step: state.screen,
-              ),
-              QuotationDropDownButton(
-                title: 'Marca',
-                hintText: state.make.isEmpty
-                    ? 'Seleccione la marca de su auto'
-                    : state.make,
-                dropdownItems: [
-                  "mercedes",
-                  "toyota",
-                  "nissan",
-                  "Toyota",
-                  "volkswagen",
-                  "mazda"
-                ],
-                onChange: (make) {
-                  if (make != null) {
-                    context.read<FormsBloc>().add(ChangedMake(make));
-                  }
-                },
-              ),
-              QuotationDropDownButton(
-                title: 'Año',
-                hintText: state.year.isEmpty
-                    ? 'Seleccione el año de su auto'
-                    : state.year,
-                dropdownItems: state.yearCars,
-                onChange: (year) {
-                  if (year != null) {
-                    context.read<FormsBloc>().add(ChangedYear(year));
-                  }
-                },
-              ),
-              QuotationDropDownButton(
-                title: 'Linea',
-                hintText: state.model.isEmpty
-                    ? 'Seleccione la linea de su auto'
-                    : state.model,
-                dropdownItems: state.modelCars,
-                onChange: (model) {
-                  if (model != null) {
-                    context.read<FormsBloc>().add(ChangedModel(model));
-                  }
-                },
-              )
-            ],
-          ),
-        );
+    return BlocListener<FormsBloc, FormsState>(
+      listener: (context, state) {
+        if (state.isError) {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(snackBarErrorLabel),
+            backgroundColor: Colors.red,
+          ));
+        }
       },
+      child: BlocBuilder<FormsBloc, FormsState>(
+        builder: (context, state) {
+          return QuotationSample(
+            title: carDataTitle,
+            homeAction: () {
+              context.go(AppRouter.home);
+            },
+            floatingAction: nextButtonIsEnable(state)
+                ? () {
+                    context.go(AppRouter.stateCar);
+                    context.read<FormsBloc>().add(Next());
+                  }
+                : null,
+            backAction: () {
+              //usar go router para ir a la siguiente anterior
+              context.go(AppRouter.home);
+            },
+            content: Column(
+              children: [
+                QuotationStepper(
+                  step: state.screen,
+                ),
+                QuotationDropDownButton(
+                  title: 'Marca',
+                  hintText: state.make.isEmpty
+                      ? 'Seleccione la marca de su auto'
+                      : state.make,
+                  dropdownItems: [
+                    "mercedes",
+                    "toyota",
+                    "nissan",
+                    "Toyota",
+                    "volkswagen",
+                    "mazda"
+                  ],
+                  onChange: (make) {
+                    if (make != null) {
+                      context.read<FormsBloc>().add(ChangedMake(make));
+                    }
+                  },
+                ),
+                QuotationDropDownButton(
+                  title: 'Año',
+                  hintText: state.year.isEmpty
+                      ? 'Seleccione el año de su auto'
+                      : state.year,
+                  dropdownItems: state.yearCars,
+                  onChange: (year) {
+                    if (year != null) {
+                      context.read<FormsBloc>().add(ChangedYear(year));
+                    }
+                  },
+                ),
+                QuotationDropDownButton(
+                  title: 'Linea',
+                  hintText: state.model.isEmpty
+                      ? 'Seleccione la linea de su auto'
+                      : state.model,
+                  dropdownItems: state.modelCars,
+                  onChange: (model) {
+                    if (model != null) {
+                      context.read<FormsBloc>().add(ChangedModel(model));
+                    }
+                  },
+                )
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 
