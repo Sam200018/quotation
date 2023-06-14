@@ -23,6 +23,12 @@ class CarDataPage extends StatelessWidget {
             backgroundColor: Colors.red,
           ));
         }
+        if (state.isLoading) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(const SnackBar(
+                content: Text(snackBarLoadingLabel),
+              ));
+        }
       },
       child: BlocBuilder<FormsBloc, FormsState>(
         builder: (context, state) {

@@ -55,3 +55,4 @@ const String DropdownHintAnio = "Seleccione el año de su auto";
 const String DropdownHintLinea = "Seleccione la línea de su auto";
 const String snackBarErrorLabel =
     "Lo siento, no fue posible recuperar la informacion";
+const String snackBarLoadingLabel = "Cargando...";
