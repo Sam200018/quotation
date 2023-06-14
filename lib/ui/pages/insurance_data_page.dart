@@ -20,11 +20,13 @@ class InsuranceDataPage extends StatelessWidget {
         homeAction: () {
           context.go(AppRouter.home);
         },
-        floatingAction: () {
-          //usar go router para ir a la siguiente pagina
-          context.read<FormsBloc>().add(Next());
-          context.go(AppRouter.result);
-        },
+        floatingAction: nextButtonEnable(state)
+            ? () {
+                //usar go router para ir a la siguiente pagina
+                context.read<FormsBloc>().add(Next());
+                context.go(AppRouter.result);
+              }
+            : null,
         floatingActionButtonLabel: quoteButtonLabel,
         backAction: () {
           //usar go router para ir a la siguiente anterior
@@ -49,4 +51,6 @@ class InsuranceDataPage extends StatelessWidget {
       );
     });
   }
+
+  bool nextButtonEnable(FormsState state) => state.insurance != 0;
 }
