@@ -19,7 +19,9 @@ class ResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FormsBloc, FormsState>(
       builder: (context, state) {
-        final name = context.read<FormsBloc>().name;
+        final name = context
+            .read<FormsBloc>()
+            .name;
         String insurance = "";
         switch (state.insurance) {
           case 1:
