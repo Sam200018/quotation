@@ -32,18 +32,28 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
 
   Future<void> changedMakeToState(
       ChangedMake event, Emitter<FormsState> emit) async {
-    final yearCarsData = await carsRepository.getCarsDataByMake(event.make);
-    final data = yearCarsData.map((e) => e.year.toString()).toSet().toList();
-    emit(state.update(make: event.make, yearCars: data));
+    emit(state.update(isLoading: true));
+    try {
+      final yearCarsData = await carsRepository.getCarsDataByMake(event.make);
+      final data = yearCarsData.map((e) => e.year.toString()).toSet().toList();
+      emit(state.update(make: event.make, yearCars: data));
+    } catch (e) {
+      emit(state.update(isError: true));
+    }
   }
 
   Future<void> changedYearToState(
       ChangedYear event, Emitter<FormsState> emit) async {
-    final modelCarsData =
-        await carsRepository.getCarDataByMakeAndYear(state.make, event.year);
-    final data = modelCarsData.map((e) => e.model).toSet().toList();
+    emit(state.update(isLoading: true));
+    try {
+      final modelCarsData =
+          await carsRepository.getCarDataByMakeAndYear(state.make, event.year);
+      final data = modelCarsData.map((e) => e.model).toSet().toList();
 
-    emit(state.update(year: event.year, modelCars: data));
+      emit(state.update(year: event.year, modelCars: data));
+    } catch (e) {
+      emit(state.update(isError: true));
+    }
   }
 
   void changedModelToState(ChangedModel event, Emitter<FormsState> emit) {
@@ -84,7 +94,7 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
 
   void changedPaymentTypeToState(
       ChangedPaymentType event, Emitter<FormsState> emit) {
-    emit(state.update(paymentType: event.paymentType,price: 0.0));
+    emit(state.update(paymentType: event.paymentType, price: 0.0));
     const basePrice = 8000;
     var result = 0.0;
     if (DateTime.now().year - int.parse(state.year) < 5) {
@@ -180,8 +190,7 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
         break;
     }
 
-
-    emit(state.update(paymentType: event.paymentType,price: result));
+    emit(state.update(paymentType: event.paymentType, price: result));
     // TODO: hacer todo el calculo aca
   }
 }
