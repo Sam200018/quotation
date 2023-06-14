@@ -25,11 +25,13 @@ class PersonalDataPage extends StatelessWidget {
           homeAction: () {
             context.go(AppRouter.home);
           },
-          floatingAction: () {
-            //usar go router para ir a la siguiente pagina
-            context.go(AppRouter.insuData);
-            context.read<FormsBloc>().add(Next());
-          },
+          floatingAction: nextButtonEnable(state, context)
+              ? () {
+                  //usar go router para ir a la siguiente pagina
+                  context.go(AppRouter.insuData);
+                  context.read<FormsBloc>().add(Next());
+                }
+              : null,
           backAction: () {
             context.read<FormsBloc>().add(Previous());
             context.go(AppRouter.stateCar);
@@ -110,5 +112,15 @@ class PersonalDataPage extends StatelessWidget {
         );
       },
     );
+  }
+
+  bool nextButtonEnable(FormsState state, BuildContext context) {
+    final name = context.read<FormsBloc>().name.text;
+    final lastName = context.read<FormsBloc>().lastName.text;
+    final birthday = context.read<FormsBloc>().birthday.text;
+    return name.isNotEmpty &&
+        lastName.isNotEmpty &&
+        state.maritalStatus.isNotEmpty &&
+        state.city.isNotEmpty;
   }
 }
