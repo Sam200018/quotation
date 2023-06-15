@@ -85,6 +85,11 @@ class ChangedPaymentType extends FormsEvent {
   List<Object?> get props => [paymentType];
 }
 
+class Reset extends FormsEvent {
+  @override
+  List<Object?> get props => [];
+}
+
 class Next extends FormsEvent {
   @override
   List<Object?> get props => [];

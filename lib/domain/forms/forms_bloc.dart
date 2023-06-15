@@ -26,6 +26,7 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
     on<ChangedCity>(changedCityToState);
     on<ChangedInsurance>(changedInsuranceToState);
     on<ChangedPaymentType>(changedPaymentTypeToState);
+    on<Reset>(resetToState);
     on<Next>(nextToState);
     on<Previous>(previousToState);
   }
@@ -191,6 +192,13 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
     }
 
     emit(state.update(paymentType: event.paymentType, price: result));
-    // TODO: hacer todo el calculo aca
+  }
+
+  void resetToState(Reset event, Emitter<FormsState> emit) {
+    emit(FormsState.initial());
+    name.clear();
+    lastName.clear();
+    birthday.clear();
+    marital.clear();
   }
 }
