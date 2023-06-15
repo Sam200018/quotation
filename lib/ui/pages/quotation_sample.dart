@@ -1,14 +1,18 @@
 import 'package:CotizApp/ui/values/colors.dart';
 import 'package:CotizApp/ui/values/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../domain/forms/forms_bloc.dart';
+import '../routes.dart';
 
 class QuotationSample extends StatelessWidget {
   final String title;
   final String floatingActionButtonLabel;
   final VoidCallback? floatingAction;
   final VoidCallback? backAction;
-  final VoidCallback homeAction;
   final Widget content;
 
   // final
@@ -17,7 +21,6 @@ class QuotationSample extends StatelessWidget {
       {Key? key,
         required this.title,
         this.backAction,
-        required this.homeAction,
         required this.floatingAction,
         required this.content,
         this.floatingActionButtonLabel = nextButtonLabel})
@@ -41,7 +44,10 @@ class QuotationSample extends StatelessWidget {
         actions: [
           IconButton(
               icon: const Icon(Icons.home),
-              onPressed: homeAction
+              onPressed: (){
+                context.go(AppRouter.home);
+                context.read<FormsBloc>().add(Reset());
+              }
           )
         ],
         elevation: 0,
