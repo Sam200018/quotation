@@ -1,4 +1,4 @@
-package com.example.quotation
+package mx.ipn.escom.bautistas.cotizapp
 
 import io.flutter.embedding.android.FlutterActivity
 
