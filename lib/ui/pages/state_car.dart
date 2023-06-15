@@ -19,9 +19,6 @@ class StateCarPage extends StatelessWidget {
       builder: (context, state) {
         return QuotationSample(
           title: stateCarTitle,
-          homeAction: () {
-            context.go(AppRouter.home);
-          },
           floatingAction: nextButtonIsEnable(state)
               ? () {
                   //usar go router para ir a la siguiente pagina

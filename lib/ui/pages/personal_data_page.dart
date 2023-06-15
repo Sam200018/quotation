@@ -22,9 +22,6 @@ class PersonalDataPage extends StatelessWidget {
 
         return QuotationSample(
           title: persDataTitle,
-          homeAction: () {
-            context.go(AppRouter.home);
-          },
           floatingAction: nextButtonEnable(state, context)
               ? () {
                   //usar go router para ir a la siguiente pagina

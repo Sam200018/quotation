@@ -43,7 +43,6 @@ class ResultPage extends StatelessWidget {
 
         return QuotationSample(
           title: quotationTitle,
-          homeAction: () {},
           floatingAction: () {
             context.go(AppRouter.insuData);
             context.read<FormsBloc>().add(Previous());

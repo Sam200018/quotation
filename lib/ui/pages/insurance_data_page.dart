@@ -17,9 +17,6 @@ class InsuranceDataPage extends StatelessWidget {
     return BlocBuilder<FormsBloc, FormsState>(builder: (context, state) {
       return QuotationSample(
         title: insuDataTitle,
-        homeAction: () {
-          context.go(AppRouter.home);
-        },
         floatingAction: nextButtonEnable(state)
             ? () {
                 //usar go router para ir a la siguiente pagina

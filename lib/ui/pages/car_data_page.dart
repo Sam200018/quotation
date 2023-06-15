@@ -34,9 +34,6 @@ class CarDataPage extends StatelessWidget {
         builder: (context, state) {
           return QuotationSample(
             title: carDataTitle,
-            homeAction: () {
-              context.go(AppRouter.home);
-            },
             floatingAction: nextButtonIsEnable(state)
                 ? () {
                     context.go(AppRouter.stateCar);
