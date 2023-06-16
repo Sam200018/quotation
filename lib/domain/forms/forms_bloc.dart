@@ -96,7 +96,7 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
   void changedPaymentTypeToState(
       ChangedPaymentType event, Emitter<FormsState> emit) {
     emit(state.update(paymentType: event.paymentType, price: 0.0));
-    const basePrice = 8000;
+    const basePrice = 4200;
     var result = 0.0;
     if (DateTime.now().year - int.parse(state.year) < 5) {
       result = (basePrice + basePrice * .10);

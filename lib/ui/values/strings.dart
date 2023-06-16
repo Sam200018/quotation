@@ -39,6 +39,7 @@ const String quotationTitle = "Cotización";
 const String resultLabel = "¡Aquí está su cotización, ";
 const String descriptionLabel = "Descripción:";
 const String insuranceLabel = "Cobertura";
+const String selectFrequencyLabel = "Seleccione su frecuencia de pago";
 const String frequencyLabel = "Frecuencia de pago";
 const String frequencyButtonLabel = "Selecciona la frecuencia ";
 const String costLabel = "El costo anual es de";
